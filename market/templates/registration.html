@@ -8,6 +8,10 @@ Registration Page
     <div class="row">
         <div class="col-8 mx-auto">
             <form method="POST" class="form-register" style="color: white;">
+                <!-- While sending our form data to db, there is high chance of
+                    stealing that data, to prevent that flask provides protection
+                    from CSRF by using below line -->
+                {{ form.hidden_tag() }}
                 <h1 class="h3 my-3">Please create an account</h1>
                 <br>
                 <div class="mb-3">
