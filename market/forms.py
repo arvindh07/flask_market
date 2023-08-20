@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import Length, DataRequired, Email, EqualTo, ValidationError
 from market.models import User
+from market import bcrypt
 
 class Registration(FlaskForm):
     def validate_username(self, username_to_change):
