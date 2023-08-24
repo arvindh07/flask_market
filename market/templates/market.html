@@ -4,31 +4,54 @@ Market Page
 {% endblock %}
 
 {% block content %}
-<div class="table-responsive">
-    <table class="table table-dark table-striped table-hover align-middle">
-        <thead>
-            <tr class="table-info">
-                <th scope="col">id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Barcode</th>
-                <th scope="col">Price</th>
-                <th scope="col">Options</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in items %}
-            <tr>
-                <th scope="row">{{item.id}}</th>
-                <td>{{item.name}}</td>
-                <td>{{item.barcode}}</td>
-                <td>${{item.price}}</td>
-                <td>
-                    <button type="button" class="btn btn-info">More Info</button>
-                    <button type="button" class="btn btn-success">Purchase</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<!-- <div class="container"> -->
+<div class="row mt-4 mx-4">
+    <div class="col-8">
+        <div class="table-responsive">
+            <h3>Available items in the market</h3>
+            <p>Click on the item to start buying</p>
+            <table class="table table-dark table-striped table-hover align-middle">
+                <thead>
+                    <tr class="table-info">
+                        <th scope="col">id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Barcode</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    {% include 'modals/item_modal.html' %}
+                    <tr>
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.barcode}}</td>
+                        <td>${{item.price}}</td>
+                        <td>
+                            <button 
+                                type="button" 
+                                class="btn btn-info"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#itemInfo-{{ item.id }}"
+                                >More Info</button>
+                            <button 
+                                type="button" 
+                                class="btn btn-success"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#purchaseItem-{{ item.id }}">Purchase</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-4">
+        <h3>Purchased item</h3>
+        <p>Click on sell item to put it back on the market</p>
+        column 4
+    </div>
 </div>
+<!-- </div> -->
 {% endblock %}
