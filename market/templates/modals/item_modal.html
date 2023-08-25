@@ -10,14 +10,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="itemInfoLabel">{{ item.name }}</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" style="background-color:#6c757d" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 {{ item.description }}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
         </div>
     </div>
@@ -29,14 +28,26 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="purchaseItemLabel">{{ item.name }}</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" 
+                    style="background-color:#6c757d" 
+                    data-bs-dismiss="modal" 
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Are you sure want to buy {{ item.name }} for {{ item.price }}$?
+                <h4>Are you sure want to buy {{ item.name }} for {{ item.price }}$?</h4>
+                <h6>By clicking purchase, you will purchase this item.</h6>
             </div>
             <div class="modal-footer">
+                <form method="POST">
+                    {{ purchase_form.hidden_tag() }}
+                    <input 
+                        id="purchased_item" 
+                        name="purchased_item" 
+                        type="hidden"
+                        value="{{ item.name }}"/>
+                    {{ purchase_form.submit(class="btn btn-outline-success btn-block") }}
+                </form>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
             </div>
         </div>
     </div>
