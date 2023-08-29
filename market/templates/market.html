@@ -29,16 +29,9 @@ Market Page
                         <td>{{item.barcode}}</td>
                         <td>${{item.price}}</td>
                         <td>
-                            <button 
-                                type="button" 
-                                class="btn btn-info"
-                                data-bs-toggle="modal" 
-                                data-bs-target="#itemInfo-{{ item.id }}"
-                                >More Info</button>
-                            <button 
-                                type="button" 
-                                class="btn btn-success"
-                                data-bs-toggle="modal" 
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                data-bs-target="#itemInfo-{{ item.id }}">More Info</button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                 data-bs-target="#purchaseItem-{{ item.id }}">Purchase</button>
                         </td>
                     </tr>
@@ -50,7 +43,24 @@ Market Page
     <div class="col-4">
         <h3>Purchased item</h3>
         <p>Click on sell item to put it back on the market</p>
-        column 4
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                {% for item in purchased_item %}
+                {% include 'modals/sell_modal.html' %}
+                <div class="card mb-3" style="background-color: #464646; color:white">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">
+                            This item costs {{ item.price }}
+                        </p>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#sellItem-{{ item.id }}">Sell</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 <!-- </div> -->
